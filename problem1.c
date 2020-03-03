@@ -19,6 +19,7 @@ int main(void){
       C[i] = (double*) malloc(sizeof(double)*n);
     }
     
+    #pragma omp parallel for
     for (i=0; i<n; i++){
       for(j=0; j< n; j++){
         A[i][j]=i;
@@ -34,11 +35,7 @@ int main(void){
     //*******************************//
     #pragma omp parallel for
     for(i=0; i< n; i++) {
-            #pragma omp parallel for
-
       for (j=0; j< n; j++) {
-              #pragma omp parallel for
-
         for (k=0; k< n; k++) {
           C[i][j] = C[i][j] + A[i][k] * B[k][j]; 
         }
