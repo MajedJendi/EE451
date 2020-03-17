@@ -65,8 +65,8 @@ int main(){
 	cudaMemcpy(gpu_b, b, sizeof(int) * HEIGHT * WIDTH, cudaMemcpyHostToDevice);
 
 	/*your code here to create dimGrid and dimBlock*/
-	dim3 dimGrid(64, 64);
-	dim3 dimBlock(16, 16); // 16*16 threads per block
+	dim3 dimGrid(32, 32);
+	dim3 dimBlock(32, 32); // 16*16 threads per block
 	
 	if( clock_gettime( CLOCK_REALTIME, &start) == -1 ) { perror( "clock gettime" );}
 
