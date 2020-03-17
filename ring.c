@@ -9,7 +9,6 @@ int main(int argc, char const *argv[])
 	MPI_Init(&argc, &argv);
 	MPI_Comm_size(MPI_COMM_WORLD, &npes);  // total number of processes
 	MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
-	MPI_Comm_status(MPI_COMM_WORLD, &status);
 	
 	printf("From process %d out of %d, Hello World\n",myrank, npes);
 
@@ -25,7 +24,7 @@ int main(int argc, char const *argv[])
 		printf("Process 0: Initially Msg = %d", msg);
 	} else if (myrank == 1) {
 		// recv from 1
-		MPI_Recv(&msg, 1, MPI_INT, 0, 200, MPI_COMM_WORLD, &status);
+		MPI_Recv(&msg, 1, MPI_INT, 0, 200, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 		// send to 2
 		msg++;
@@ -34,7 +33,7 @@ int main(int argc, char const *argv[])
 
 	} else if (myrank == 2) {
 		// recv from 2
-		MPI_Recv(&msg, 1, MPI_INT, 1, 200, MPI_COMM_WORLD, &status);
+		MPI_Recv(&msg, 1, MPI_INT, 1, 200, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 		// send to 3
 		msg++;
@@ -43,7 +42,7 @@ int main(int argc, char const *argv[])
 
 	} else if (myrank == 3) {
 		// recv from 3
-		MPI_Recv(&msg, 1, MPI_INT, 2, 200, MPI_COMM_WORLD, &status);
+		MPI_Recv(&msg, 1, MPI_INT, 2, 200, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 		printf("Process 3: Msg = %d", msg);
 		// print msg
 		printf("Process 0: Received Msg = %d. Done!", msg);
