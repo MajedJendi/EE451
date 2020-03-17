@@ -23,8 +23,8 @@ __global__ void matrix_mult(int *a, int *b, int *c){
 
 
 		// each thread reads one element from both A and B matrices into the shared sub-matrices
-		a_share[threadRow][threadCol] = a[/*your code here*/];
-		b_share[threadRow][threadCol] = b[/*your code here*/];
+		a_share[threadRow][threadCol] = a[row][col];// here
+		b_share[threadRow][threadCol] = b[row][col];// here
 
 		// make sure the sub-matrices are loaded before starting the computation
 		__syncthreads();
