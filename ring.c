@@ -21,14 +21,15 @@ int main(int argc, char const *argv[])
 	if (myrank == 0) {
 		// send to 1
 		MPI_Send( &msg, 1, MPI_INT, 1, 200, MPI_COMM_WORLD);
-		printf("Process 0: Initially Msg = %d", msg);
+		printf("Process 0: Initially Msg = %d\n", msg);
+		msg++;
 	} else if (myrank == 1) {
 		// recv from 1
 		MPI_Recv(&msg, 1, MPI_INT, 0, 200, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 		// send to 2
 		msg++;
-		printf("Process 1: Msg = %d", msg);
+		printf("Process 1: Msg = %d\n", msg);
 		MPI_Send( &msg, 1, MPI_INT, 2, 200, MPI_COMM_WORLD);
 
 	} else if (myrank == 2) {
@@ -37,15 +38,15 @@ int main(int argc, char const *argv[])
 
 		// send to 3
 		msg++;
-		printf("Process 2: Msg = %d", msg);
+		printf("Process 2: Msg = %d\n", msg);
 		MPI_Send( &msg, 1, MPI_INT, 3, 200, MPI_COMM_WORLD);
 
 	} else if (myrank == 3) {
 		// recv from 3
 		MPI_Recv(&msg, 1, MPI_INT, 2, 200, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-		printf("Process 3: Msg = %d", msg);
+		printf("Process 3: Msg = %d\n", msg);
 		// print msg
-		printf("Process 0: Received Msg = %d. Done!", msg);
+		printf("Process 0: Received Msg = %d. Done!\n", msg);
 	}
 	MPI_Finalize();
 	return 0;
