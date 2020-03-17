@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
 		printf("Process 0: Initially Msg = %d", msg);
 	} else if (myrank == 1) {
 		// recv from 1
-		MPI_Recv(&msg, 1, MPI_INT, 0, 200, MPI_COMM_WORLD, &status);
+		MPI_Recv(&msg, 1, MPI_INT, 0, 200, MPI_COMM_WORLD, &MPI_STATUS);
 
 		// send to 2
 		msg++;
