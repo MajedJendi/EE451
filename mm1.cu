@@ -11,11 +11,17 @@ __global__ void matrix_mult(int *a, int *b, int *c){
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 
+	
+	// 	Cvalue += A.elements[row * A.width + e] *
+	// B.elements[e * B.width + col];
+
+	// C.elements[row * C.width + col] = Cvalue;
+	
 	int c_val = 0;
 	for (int i = 0; i<WIDTH; i++) {
-		c_val += /*your code here*/;
+		c_val += a[row * WIDTH + i] * b[i * WIDTH + col];
 	}
-	c[/*your code here*/] = c_val;
+	c[row * WIDTH + col] = c_val;
 }
 
 int main(){
