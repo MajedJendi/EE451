@@ -4,11 +4,13 @@
 
 int main(int argc, char const *argv[])
 {
-	int npes, myrank;
+	int npes, myrank, status;
 
 	MPI_Init(&argc, &argv);
 	MPI_Comm_size(MPI_COMM_WORLD, &npes);  // total number of processes
 	MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+	MPI_Comm_status(MPI_COMM_WORLD, &status);
+	
 	printf("From process %d out of %d, Hello World\n",myrank, npes);
 
 
@@ -23,7 +25,7 @@ int main(int argc, char const *argv[])
 		printf("Process 0: Initially Msg = %d", msg);
 	} else if (myrank == 1) {
 		// recv from 1
-		MPI_Recv(&msg, 1, MPI_INT, 0, 200, MPI_COMM_WORLD, &MPI_STATUS);
+		MPI_Recv(&msg, 1, MPI_INT, 0, 200, MPI_COMM_WORLD, &status);
 
 		// send to 2
 		msg++;
