@@ -30,7 +30,7 @@ __global__ void matrix_mult(int *a, int *b, int *c){
 		__syncthreads();
 
 		for (int i=0; i<BLOCK_SIZE; i++) {
-			c_val += a_share[row][i] * b_share[i][col];
+			c_val += a_share[threadRow][i] * b_share[i][threadCol];
 		}
 
 		// make sure every thread is done computing before loading new sub-matrices
