@@ -9,16 +9,16 @@ def mapToCluster(data, means):
 	min = sys.maxsize
 	closestMeanValue = 0
 	for y in means:
-		if abs(y - data) < min:
-			min = abs(y - data)
-			closestMeanValue = y
+		if abs(float(y) - float(data)) < float(min):
+			min = abs(float(y) - float(data))
+			closestMeanValue = float(y)
 	return closestMeanValue
 
 def updatemeans(data1, data2):
 	#data1,data2 -> tuple of format (meanvalue, count)
 	#give (avg1, n1), (avg2, n2), new average will be (n1*avg1 + n2*avg2)/(n1+n2)
-	newavg = (data1[0] * data1[1] + data2[0] * data2[1]) / (data1[1] + data2[1])
-	newcount = data1[1] + data2[1]
+	newavg = (float(data1[0]) * float(data1[1]) + float(data2[0]) * float(data2[1])) / (float(data1[1]) + float(data2[1]))
+	newcount = float(data1[1]) + float(data2[1])
 	return (newavg, newcount)
 
 if __name__ == "__main__":
