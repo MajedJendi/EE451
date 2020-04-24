@@ -47,7 +47,7 @@ def main(_):
   ps_hosts = FLAGS.ps_hosts.split(",")
   worker_hosts = FLAGS.worker_hosts.split(",")
   # Hint: function name
-  cluster = tf.train.ClusSpec({"ps": ps_hosts, "worker": worker_hosts})
+  cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
   # Hint: function name
   server = tf.train.Server(cluster,job_name=FLAGS.job_name,task_index=FLAGS.task_index)
 
